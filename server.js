@@ -2,6 +2,12 @@ const express=require('express');
 const app=express();
 const port=process.env.Port||5000;
 const dbconnection=require("./db");
+const bodyPareser = require("body-parser");
+const cors = require("cors");
+
+app.use(bodyPareser.json({ extended: true }));
+app.use(bodyPareser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use('/api/cars',require('./routes/carsRoute'))
 
