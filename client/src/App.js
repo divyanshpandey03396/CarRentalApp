@@ -4,6 +4,9 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import BookingCar from "./pages/BookingCar";
+import 'antd/dist/antd.min.css';
+
+export const URL="http://localhost:5000";
 
 function App() {
   return (
