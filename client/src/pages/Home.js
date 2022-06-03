@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import DefaultLayout from "../components/DefaultLayout";
 import { getAllCars } from "../redux/actions/carsActions";
 import { Col, Row, DatePicker } from "antd";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import Spinner from "../components/Spinner";
 import moment from "moment";
 const { RangePicker } = DatePicker;
@@ -12,8 +12,15 @@ function Home() {
   const { loading } = useSelector((state) => state.alertsReducer);
   const [totalCars, setTotalcars] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const checkAuth =()=>{
+    if(!localStorage.getItem('user'))
+    navigate("/login");
+  }
 
   useEffect(() => {
+    checkAuth();
     dispatch(getAllCars());
   }, []);
 
