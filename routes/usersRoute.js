@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../modals/userModel")
+const User = require("../models/userModel")
 
 
 router.post("/login", async(req, res) => {
@@ -36,4 +36,5 @@ router.post("/register", async(req, res) => {
 });
 
 
-module.exports = router;
+module.exports = router
+

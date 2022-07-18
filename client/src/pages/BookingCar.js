@@ -8,12 +8,10 @@ import moment from "moment";
 import { bookCar } from "../redux/actions/bookingActions";
 import StripeCheckout from "react-stripe-checkout";
 import AOS from 'aos';
-import { useParams } from "react-router-dom";
 
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 const { RangePicker } = DatePicker;
 function BookingCar({ match }) {
-  const {carid}=useParams();
   const { cars } = useSelector((state) => state.carsReducer);
   const { loading } = useSelector((state) => state.alertsReducer);
   const [car, setcar] = useState({});
@@ -26,10 +24,10 @@ function BookingCar({ match }) {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (cars.length === 0) {
+    if (cars.length == 0) {
       dispatch(getAllCars());
     } else {
-      setcar(cars.find((o) => o._id === carid));
+      setcar(cars.find((o) => o._id == match.params.carid));
     }
   }, [cars]);
 
@@ -79,7 +77,7 @@ function BookingCar({ match }) {
         </Col>
 
         <Col lg={10} sm={24} xs={24} className="text-right">
-          <Divider type="horizontal" dashed >
+          <Divider type="horizontal" dashed>
             Car Info
           </Divider>
           <div style={{ textAlign: "right" }}>
@@ -133,7 +131,7 @@ function BookingCar({ match }) {
                 token={onToken}
                 currency='inr'
                 amount={totalAmount * 100}
-                stripeKey="pk_test_51LHXKhSF7KcRBwd5BO9F5VZESY4ocA0erks7WDK7wpXe3bwK72w2PooRAj5Ee7fJ8oM8my8B8CrEQ8co0lLuE7Od003tacZori"
+                stripeKey="pk_test_51IYnC0SIR2AbPxU0TMStZwFUoaDZle9yXVygpVIzg36LdpO8aSG8B9j2C0AikiQw2YyCI8n4faFYQI5uG3Nk5EGQ00lCfjXYvZ"
               >
                   <button className="btn1">
                 Book Now
